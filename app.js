@@ -265,7 +265,7 @@ const data = [
   },
   {
     "Marca": "MAZDA",
-    "Modello": 2,
+    "Modello": "2",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -573,7 +573,7 @@ const data = [
   },
   {
     "Marca": "BMW",
-    "Modello": 335,
+    "Modello": "335",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -595,7 +595,7 @@ const data = [
   },
   {
     "Marca": "BMW",
-    "Modello": 320,
+    "Modello": "320",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -705,7 +705,7 @@ const data = [
   },
   {
     "Marca": "MAZDA",
-    "Modello": 5,
+    "Modello": "5",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -903,7 +903,7 @@ const data = [
   },
   {
     "Marca": "MAZDA",
-    "Modello": 3,
+    "Modello": "3",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -969,7 +969,7 @@ const data = [
   },
   {
     "Marca": "ALFA",
-    "Modello": 147,
+    "Modello": "147",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -1013,7 +1013,7 @@ const data = [
   },
   {
     "Marca": "MAZDA",
-    "Modello": 6,
+    "Modello": "6",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -1057,7 +1057,7 @@ const data = [
   },
   {
     "Marca": "ALFA",
-    "Modello": 159,
+    "Modello": "159",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -1431,7 +1431,7 @@ const data = [
   },
   {
     "Marca": "PEUGEOT",
-    "Modello": 308,
+    "Modello": "308",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -1497,7 +1497,7 @@ const data = [
   },
   {
     "Marca": "PEUGEOT",
-    "Modello": 207,
+    "Modello": "207",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -1849,7 +1849,7 @@ const data = [
   },
   {
     "Marca": "PEUGEOT",
-    "Modello": 407,
+    "Modello": "407",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -1893,7 +1893,7 @@ const data = [
   },
   {
     "Marca": "BMW",
-    "Modello": 525,
+    "Modello": "525",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -2355,7 +2355,7 @@ const data = [
   },
   {
     "Marca": "PEUGEOT",
-    "Modello": 607,
+    "Modello": "607",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -2421,7 +2421,7 @@ const data = [
   },
   {
     "Marca": "FERRARI",
-    "Modello": 355,
+    "Modello": "355",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
@@ -2575,7 +2575,7 @@ const data = [
   },
   {
     "Marca": "PEUGEOT",
-    "Modello": 807,
+    "Modello": "807",
     "C-2.32ECO": "SI",
     "C2.32CONFORT": "SI",
     "C2.32SyncECO": "SI",
