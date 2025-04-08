@@ -8,8 +8,17 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <h1>Ricerca Veicolo</h1>
-  <input type="text" id="searchInput" placeholder="Inserisci marca o modello...">
+  <h1>Ricerca compatibilità veicoli</h1>
+  <label for="marcaSelect">Marca:</label>
+  <select id="marcaSelect">
+    <option value="">Seleziona marca</option>
+  </select>
+
+  <label for="modelloSelect">Modello:</label>
+  <select id="modelloSelect">
+    <option value="">Seleziona modello</option>
+  </select>
+
   <div id="results"></div>
   <script src="app.js"></script>
 </body>

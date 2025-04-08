@@ -1,4 +1,8 @@
 let data = [];
+let marcaSet = new Set();
+let modelloSet = new Set();
+let allData = [];
+
 fetch("compatibilita_cascos.csv")
   .then((res) => res.text())
   .then((csv) => {
@@ -6,30 +10,58 @@ fetch("compatibilita_cascos.csv")
     const keys = header.split(",");
     data = rows.map(row => {
       const values = row.split(",");
-      return Object.fromEntries(keys.map((k, i) => [k, values[i]]));
+      return Object.fromEntries(keys.map((k, i) => [k.trim(), values[i].trim()]));
     });
-  });
 
-document.getElementById("searchInput").addEventListener("input", function () {
-  const query = this.value.toLowerCase();
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = "";
-  if (query.length < 2) return;
-  const results = data.filter(d =>
-    d.Marca.toLowerCase().includes(query) || d.Modello.toLowerCase().includes(query)
-  );
-  if (results.length === 0) {
-    resultsDiv.innerHTML = "<p>Nessun veicolo trovato.</p>";
-    return;
-  }
-  results.forEach(r => {
-    let html = `<h3>${r.Marca} ${r.Modello}</h3><ul>`;
-    Object.keys(r).forEach(k => {
-      if (k !== "Marca" && k !== "Modello") {
-        html += `<li>${k}: ${r[k]}</li>`;
-      }
+    allData = data;
+    data.forEach(row => {
+      marcaSet.add(row.Marca);
     });
-    html += "</ul>";
-    resultsDiv.innerHTML += html;
+
+    const marcaSelect = document.getElementById("marcaSelect");
+    const modelloSelect = document.getElementById("modelloSelect");
+
+    marcaSet.forEach(marca => {
+      let option = document.createElement("option");
+      option.value = marca;
+      option.textContent = marca;
+      marcaSelect.appendChild(option);
+    });
+
+    marcaSelect.addEventListener("change", function () {
+      const selectedMarca = this.value;
+      modelloSelect.innerHTML = '<option value="">Seleziona modello</option>';
+      modelloSet.clear();
+
+      allData
+        .filter(d => d.Marca === selectedMarca)
+        .forEach(d => modelloSet.add(d.Modello));
+
+      modelloSet.forEach(modello => {
+        let option = document.createElement("option");
+        option.value = modello;
+        option.textContent = modello;
+        modelloSelect.appendChild(option);
+      });
+    });
+
+    modelloSelect.addEventListener("change", function () {
+      const marca = marcaSelect.value;
+      const modello = this.value;
+      const result = allData.find(d => d.Marca === marca && d.Modello === modello);
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+      if (!result) {
+        resultsDiv.innerHTML = "<p>Nessun risultato trovato.</p>";
+        return;
+      }
+      let html = `<h3>${result.Marca} ${result.Modello}</h3><ul>`;
+      Object.keys(result).forEach(k => {
+        if (k !== "Marca" && k !== "Modello") {
+          html += `<li>${k}: ${result[k]}</li>`;
+        }
+      });
+      html += "</ul>";
+      resultsDiv.innerHTML = html;
+    });
   });
-});
