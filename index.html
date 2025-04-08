@@ -6,25 +6,92 @@
   <title>CASCOS Finder</title>
   <link rel="manifest" href="manifest.json"/>
   <link rel="stylesheet" href="style.css"/>
+  <style>
+    .dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+    .dark-mode select,
+    .dark-mode input {
+      background-color: #333;
+      color: white;
+    }
+    #controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
   <h1>Ricerca compatibilità veicoli</h1>
 
-  <label for="csvUpload">Carica il tuo CSV:</label>
-  <input type="file" id="csvUpload" accept=".csv"><br><br>
+  <div id="controls">
+    <label for="marcaSelect">Marca:</label>
+    <select id="marcaSelect">
+      <option value="">Seleziona marca</option>
+    </select>
 
-  <label for="marcaSelect">Marca:</label>
-  <select id="marcaSelect">
-    <option value="">Seleziona marca</option>
-  </select>
+    <label for="modelloSelect">Modello:</label>
+    <select id="modelloSelect">
+      <option value="">Seleziona modello</option>
+    </select>
 
-  <label for="modelloSelect">Modello:</label>
-  <select id="modelloSelect">
-    <option value="">Seleziona modello</option>
-  </select>
+    <input type="text" id="freeSearch" placeholder="Ricerca libera..." />
+    <button id="resetBtn">Reset</button>
+    <button id="toggleTheme">🌙 Tema</button>
+    <button id="exportPDF">📄 Esporta PDF</button>
+  </div>
 
   <div id="results"></div>
 
   <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      location.reload();
+    });
+
+    document.getElementById("toggleTheme").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+
+    document.getElementById("freeSearch").addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+      if (!query || query.length < 2) return;
+      const results = data.filter(d =>
+        d.Marca.toLowerCase().includes(query) ||
+        d.Modello.toLowerCase().includes(query) ||
+        Object.values(d).some(val => val.toLowerCase().includes(query))
+      );
+      if (results.length === 0) {
+        resultsDiv.innerHTML = "<p>Nessun risultato trovato.</p>";
+        return;
+      }
+      results.forEach(r => {
+        let html = `<h3>${r.Marca} ${r.Modello}</h3><ul>`;
+        Object.keys(r).forEach(k => {
+          if (k !== "Marca" && k !== "Modello") {
+            html += `<li>${k}: ${r[k]}</li>`;
+          }
+        });
+        html += "</ul>";
+        resultsDiv.innerHTML += html;
+      });
+    });
+
+    document.getElementById("exportPDF").addEventListener("click", () => {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+      const content = document.getElementById("results").innerText;
+      const lines = pdf.splitTextToSize(content, 180);
+      pdf.text(lines, 10, 10);
+      pdf.save("risultato_cascos.pdf");
+    });
+  </script>
 </body>
 </html>
