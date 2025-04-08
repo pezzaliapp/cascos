@@ -9,6 +9,10 @@
 </head>
 <body>
   <h1>Ricerca compatibilità veicoli</h1>
+
+  <label for="csvUpload">Carica il tuo CSV:</label>
+  <input type="file" id="csvUpload" accept=".csv"><br><br>
+
   <label for="marcaSelect">Marca:</label>
   <select id="marcaSelect">
     <option value="">Seleziona marca</option>
@@ -20,14 +24,7 @@
   </select>
 
   <div id="results"></div>
+
   <script src="app.js"></script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('Service Worker registrato con successo!'));
-  }
-</script>
 </body>
-
 </html>
